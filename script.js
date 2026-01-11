@@ -1,4 +1,4 @@
-// Simple interactive functionality
+// Enhanced interactive functionality
 document.addEventListener('DOMContentLoaded', () => {
     const testBtn = document.getElementById('testBtn');
     const message = document.getElementById('message');
@@ -6,23 +6,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     testBtn.addEventListener('click', () => {
         clickCount++;
-        
+
         const messages = [
-            '🎉 Great! The JavaScript is working!',
-            '✨ You clicked again!',
-            '🚀 Still working perfectly!',
-            '💫 This is a static website!',
-            '🌟 Deployed on GitHub Pages!',
+            '🎉 Awesome! The magic is working!',
+            '✨ You discovered the interaction!',
+            '🚀 Smooth animations in action!',
+            '💫 This is pure CSS & JavaScript!',
+            '🌟 No frameworks needed!',
+            '🎨 Beautiful glassmorphism effect!',
+            '⚡ Lightning fast performance!',
+            '🔮 Modern web design at its finest!',
         ];
 
         const randomMessage = messages[Math.floor(Math.random() * messages.length)];
         message.textContent = `${randomMessage} (Click #${clickCount})`;
-        
-        // Add animation
+
+        // Enhanced animation
         message.style.animation = 'none';
         setTimeout(() => {
             message.style.animation = 'fadeIn 0.5s ease';
         }, 10);
+
+        // Add ripple effect to button
+        const ripple = document.createElement('span');
+        ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            width: 100px;
+            height: 100px;
+            margin-top: -50px;
+            margin-left: -50px;
+            animation: ripple 0.6s;
+            pointer-events: none;
+        `;
+        testBtn.style.position = 'relative';
+        testBtn.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
     });
 
     // Smooth scrolling for navigation links
@@ -39,9 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Console message
-    console.log('🎯 Static Web Test - JavaScript loaded successfully!');
-    console.log('📦 Project ready for GitHub deployment');
+    // Add parallax effect to sections on scroll
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.content-section');
+
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.5;
+            const yPos = -(scrolled * speed * (index + 1) * 0.1);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+
+    // Console messages
+    console.log('✨ Static Web Test - Enhanced Design Loaded!');
+    console.log('🎨 Featuring: Glassmorphism, Modern Typography, Smooth Animations');
+    console.log('🚀 Ready for deployment!');
 });
 
 // Add CSS animation keyframes dynamically
@@ -55,6 +91,17 @@ style.textContent = `
         to {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+    
+    @keyframes ripple {
+        from {
+            opacity: 1;
+            transform: scale(0);
+        }
+        to {
+            opacity: 0;
+            transform: scale(4);
         }
     }
 `;
